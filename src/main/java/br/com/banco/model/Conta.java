@@ -20,4 +20,8 @@ public class Conta {
 
     @OneToOne(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Transferencia transferencia;
+
+    public Conta (String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
+    }
 }
