@@ -1,5 +1,6 @@
 package br.com.banco.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@SequenceGenerator(
+        name = "seq_generator",
+        sequenceName = "SEQ_TRANSFERENCIA",
+        initialValue = 7,
+        allocationSize = 1
+)
 public class Transferencia {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(nullable = false)
     private LocalDate dataTransferencia;
@@ -28,7 +35,27 @@ public class Transferencia {
     @Column(length = 50)
     private String nomeOperadorTransacao;
 
-    @JoinColumn(name = "id_conta")
-    @OneToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
+    private int contaId;
+
+    @JsonBackReference
+    @JoinColumn(name = "conta")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Conta conta;
+
+    public Transferencia(
+            LocalDate dataTransferencia,
+            double valor,
+            String tipo,
+            String nomeOperadorTransacao,
+            int contaId,
+            Conta conta
+    ) {
+        this.dataTransferencia = dataTransferencia;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.nomeOperadorTransacao = nomeOperadorTransacao;
+        this.contaId = contaId;
+        this.conta = conta;
+    }
 }

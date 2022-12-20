@@ -6,9 +6,9 @@ import br.com.banco.model.Conta;
 public interface ContaInterface {
     Conta criar(ContaDto contaDto);
 
-    Conta encontrarPeloId(Long id);
+    Conta encontrarPeloId(int id);
 
-    Conta atualizar(Long id, ContaDto contaDto);
+    Conta atualizar(int id, ContaDto contaDto);
 
-    void deletar(Long id);
+    void deletar(int id);
 }

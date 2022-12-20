@@ -31,7 +31,7 @@ public interface ContaInterfaceController {
             @ApiResponse(responseCode = "404", description = "Conta não encontrada",
                     content = @Content)})
     @Operation(summary = "Encontrar conta pelo id")
-    ResponseEntity<Conta> encontrarPeloId(@PathVariable Long id);
+    ResponseEntity<Conta> encontrarPeloId(@PathVariable int id);
 
     @PatchMapping("/{id}")
     @ApiResponses(value = {
@@ -44,7 +44,7 @@ public interface ContaInterfaceController {
                     content = @Content)})
     @Operation(summary = "Atualizar conta pelo id")
     ResponseEntity<Conta> atualizar(
-            @PathVariable Long id,
+            @PathVariable int id,
             @RequestBody ContaDto contaDto
     );
 
@@ -55,5 +55,5 @@ public interface ContaInterfaceController {
             @ApiResponse(responseCode = "404", description = "Conta não encontrada",
                     content = @Content)})
     @Operation(summary = "Deletar conta pelo id")
-    ResponseEntity<Object> delete(@PathVariable Long id);
+    ResponseEntity<Object> delete(@PathVariable int id);
 }

@@ -24,17 +24,17 @@ public class ContaController implements ContaInterfaceController {
     }
 
     @Override
-    public ResponseEntity<Conta> encontrarPeloId(Long id) {
+    public ResponseEntity<Conta> encontrarPeloId(int id) {
         return ResponseEntity.status(HttpStatus.OK).body(contaService.encontrarPeloId(id));
     }
 
     @Override
-    public ResponseEntity<Conta> atualizar(Long id, ContaDto contaDto) {
+    public ResponseEntity<Conta> atualizar(int id, ContaDto contaDto) {
         return ResponseEntity.status(HttpStatus.OK).body(contaService.atualizar(id, contaDto));
     }
 
     @Override
-    public ResponseEntity<Object> delete(Long id) {
+    public ResponseEntity<Object> delete(int id) {
         contaService.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

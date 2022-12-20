@@ -10,4 +10,5 @@ public class TransferenciaDto {
     private double valor;
     private String tipo;
     private String nomeOperadorTransacao;
+    private int contaId;
 }

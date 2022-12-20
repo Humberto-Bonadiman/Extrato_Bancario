@@ -22,12 +22,12 @@ public class ContaService implements ContaInterface {
     }
 
     @Override
-    public Conta encontrarPeloId(Long id) {
+    public Conta encontrarPeloId(int id) {
         return encontrarContaPeloId(id);
     }
 
     @Override
-    public Conta atualizar(Long id, @NotNull ContaDto contaDto) {
+    public Conta atualizar(int id, @NotNull ContaDto contaDto) {
         Conta conta = encontrarContaPeloId(id);
         conta.setNomeResponsavel(contaDto.getNomeResponsavel());
         contaRepository.save(conta);
@@ -35,11 +35,11 @@ public class ContaService implements ContaInterface {
     }
 
     @Override
-    public void deletar(Long id) {
+    public void deletar(int id) {
         contaRepository.deleteById(id);
     }
 
-    private @NotNull Conta encontrarContaPeloId(Long id) {
+    private @NotNull Conta encontrarContaPeloId(int id) {
         Optional<Conta> contaValida = contaRepository.findById(id);
         /**
          * if (contaValida.isEmpty()) {
