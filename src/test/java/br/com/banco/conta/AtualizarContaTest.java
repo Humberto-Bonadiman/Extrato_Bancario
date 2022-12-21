@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.banco.utils.CriaConta;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -40,7 +41,7 @@ public class AtualizarContaTest {
     @Order(3)
     @DisplayName("3 - Deve atualizar uma conta com sucesso")
     void registerPersonSuccessfully() throws Exception {
-        Conta conta = new Conta("Júlio Teste da Silva");
+        final Conta conta = CriaConta.criarConta();
         contaRepository.save(conta);
         conta.setNomeResponsavel("Júlio da Silva Teste");
         contaRepository.save(conta);

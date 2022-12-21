@@ -48,6 +48,20 @@ public class Transferencia {
             double valor,
             String tipo,
             String nomeOperadorTransacao,
+            int contaId
+    ) {
+        this.dataTransferencia = dataTransferencia;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.nomeOperadorTransacao = nomeOperadorTransacao;
+        this.contaId = contaId;
+    }
+
+    public Transferencia(
+            LocalDate dataTransferencia,
+            double valor,
+            String tipo,
+            String nomeOperadorTransacao,
             int contaId,
             Conta conta
     ) {

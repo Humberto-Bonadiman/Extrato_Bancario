@@ -1,16 +1,17 @@
-package br.com.banco.dto;
+package br.com.banco.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class TransferenciaDto {
-    private LocalDate dataTransferencia;
+public class RetornoTransferencia {
+    private int id;
+    private String dataTransferencia;
     private double valor;
     private String tipo;
     private String nomeOperadorTransacao;

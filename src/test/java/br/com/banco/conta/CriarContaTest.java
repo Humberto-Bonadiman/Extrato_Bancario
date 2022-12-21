@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.banco.utils.CriaConta;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,8 +38,8 @@ public class CriarContaTest {
     @Test
     @Order(1)
     @DisplayName("1 - Deve criar uma conta com sucesso")
-    void registerPersonSuccessfully() throws Exception {
-        final Conta conta = new Conta("Júlio Teste da Silva");
+    void criarConta() throws Exception {
+        final Conta conta = CriaConta.criarConta();
         contaRepository.save(conta);
         mockMvc.perform(post("/conta")
                         .contentType(MediaType.APPLICATION_JSON)
