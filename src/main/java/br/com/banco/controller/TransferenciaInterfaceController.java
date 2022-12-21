@@ -35,6 +35,15 @@ public interface TransferenciaInterfaceController {
     @Operation(summary = "Criar transferência")
     ResponseEntity<Transferencia> create(@RequestBody TransferenciaDto transferenciaDto);
 
+    @GetMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Encontrar Transferências pelo id",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Transferencia.class))})
+    })
+    @Operation(summary = "Mostrar transferência pelo id")
+    ResponseEntity<Transferencia> encontrarTransferenciaPeloId(@PathVariable int id);
+
     @GetMapping("/id-conta/{contaId}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Encontrar Transferências pelo id da conta",
@@ -82,4 +91,9 @@ public interface TransferenciaInterfaceController {
             @PathVariable int idConta,
             @RequestBody FiltroDto filtroDto
     );
+
+    @DeleteMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", content = @Content)})
+    ResponseEntity<Object> deletePeloId(@PathVariable int id);
 }

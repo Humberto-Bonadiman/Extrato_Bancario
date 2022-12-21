@@ -5,12 +5,12 @@ import br.com.banco.dto.OperadorDto;
 import br.com.banco.dto.PeriodoDto;
 import br.com.banco.dto.TransferenciaDto;
 import br.com.banco.model.Transferencia;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public interface TransferenciaInterface {
     Transferencia criar(TransferenciaDto transferenciaDto);
+
+    Transferencia encontrarTransferenciasPeloId(int id);
 
     List<Transferencia> encontrarTransferenciasPeloIdConta(int idConta);
 
@@ -22,4 +22,6 @@ public interface TransferenciaInterface {
             int idConta,
             FiltroDto filtroDto
     );
+
+    void deletarTransferencia(int id);
 }

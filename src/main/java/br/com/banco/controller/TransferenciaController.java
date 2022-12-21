@@ -30,6 +30,12 @@ public class TransferenciaController implements TransferenciaInterfaceController
     }
 
     @Override
+    public ResponseEntity<Transferencia> encontrarTransferenciaPeloId(int id) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(transferenciaService.encontrarTransferenciasPeloId(id));
+    }
+
+    @Override
     public ResponseEntity<List<Transferencia>> mostrarTransferenciasPeloIdConta(int id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(transferenciaService.encontrarTransferenciasPeloIdConta(id));
@@ -60,5 +66,11 @@ public class TransferenciaController implements TransferenciaInterfaceController
     ) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(transferenciaService.filtrarPeloTempoEOperador(idConta, filtroDto));
+    }
+
+    @Override
+    public ResponseEntity<Object> deletePeloId(int id) {
+        transferenciaService.deletarTransferencia(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -45,6 +45,12 @@ public class TransferenciaService implements TransferenciaInterface {
     }
 
     @Override
+    public Transferencia encontrarTransferenciasPeloId(int id) {
+        Optional<Transferencia> transferencia = transferenciaRepository.findById(id);
+        return transferencia.get();
+    }
+
+    @Override
     public List<Transferencia> encontrarTransferenciasPeloIdConta(int idConta) {
         return encontrarTodosPelaContaId(idConta);
     }
@@ -78,6 +84,11 @@ public class TransferenciaService implements TransferenciaInterface {
                 filtroDto.getDataFinal()
         );
         return filtrarNomeOperador(transferencias, filtroDto.getNomeOperadorTransacao());
+    }
+
+    @Override
+    public void deletarTransferencia(int id) {
+        transferenciaRepository.deleteById(id);
     }
 
     private List<Transferencia> encontrarTodosPelaContaId(int idConta) {
