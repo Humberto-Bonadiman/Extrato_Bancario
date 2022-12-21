@@ -35,7 +35,7 @@ public class Transferencia {
     @Column(length = 50)
     private String nomeOperadorTransacao;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "conta_id")
     private int contaId;
 
     @JsonBackReference
