@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@SequenceGenerator(
+    name = "seq_generator",
+    sequenceName = "SEQ_TRANSFERENCIA",
+    initialValue = 7,
+    allocationSize = 1
+ )
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@SequenceGenerator(
-        name = "seq_generator",
-        sequenceName = "SEQ_TRANSFERENCIA",
-        initialValue = 7,
-        allocationSize = 1
-)
 public class Transferencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

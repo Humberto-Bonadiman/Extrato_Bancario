@@ -13,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,10 +22,10 @@ import java.util.stream.Collectors;
 public class TransferenciaService implements TransferenciaInterface {
 
     @Autowired
-    private TransferenciaRepository transferenciaRepository;
+    TransferenciaRepository transferenciaRepository;
 
     @Autowired
-    private ContaRepository contaRepository;
+    ContaRepository contaRepository;
 
     @Override
     public Transferencia criar(@NotNull TransferenciaDto transferenciaDto) {

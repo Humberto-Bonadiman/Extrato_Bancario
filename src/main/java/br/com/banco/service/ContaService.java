@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class ContaService implements ContaInterface {
 
     @Autowired
-    private ContaRepository contaRepository;
+    ContaRepository contaRepository;
 
     @Override
     public Conta criar(@NotNull ContaDto contaDto) {

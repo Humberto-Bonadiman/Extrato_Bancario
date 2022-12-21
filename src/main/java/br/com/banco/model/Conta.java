@@ -11,16 +11,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@SequenceGenerator(
+    name = "seq_generator",
+    sequenceName = "SEQ_CONTA",
+    initialValue = 3,
+    allocationSize = 1
+)
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@SequenceGenerator(
-        name = "seq_generator",
-        sequenceName = "SEQ_CONTA",
-        initialValue = 3,
-        allocationSize = 1
-)
 public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
