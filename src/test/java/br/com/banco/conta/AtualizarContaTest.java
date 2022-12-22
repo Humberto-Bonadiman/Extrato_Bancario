@@ -40,7 +40,7 @@ public class AtualizarContaTest {
     @Test
     @Order(3)
     @DisplayName("3 - Deve atualizar uma conta com sucesso")
-    void registerPersonSuccessfully() throws Exception {
+    void atualizarConta() throws Exception {
         final Conta conta = CriaConta.criarConta();
         contaRepository.save(conta);
         conta.setNomeResponsavel("Júlio da Silva Teste");

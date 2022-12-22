@@ -38,7 +38,7 @@ public class DeletarContaTest {
     @Test
     @Order(4)
     @DisplayName("4 - Deve deletar uma conta com sucesso")
-    void registerPersonSuccessfully() throws Exception {
+    void deletarConta() throws Exception {
         final Conta conta = CriaConta.criarConta();
         contaRepository.save(conta);
         mockMvc.perform(delete("/conta/" + conta.getIdConta()))

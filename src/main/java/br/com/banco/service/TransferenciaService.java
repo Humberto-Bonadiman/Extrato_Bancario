@@ -1,6 +1,7 @@
 package br.com.banco.service;
 
 import br.com.banco.dto.*;
+import br.com.banco.exception.messages.ContaNaoEncontradaException;
 import br.com.banco.exception.messages.TransferenciaNaoEncontradaException;
 import br.com.banco.model.Conta;
 import br.com.banco.model.Transferencia;
@@ -28,7 +29,7 @@ public class TransferenciaService implements TransferenciaInterface {
 
     @Override
     public Transferencia criar(@NotNull TransferenciaDto transferenciaDto) {
-        Conta conta = ContaService.encontrarContaPeloId(transferenciaDto.getContaId());
+        Conta conta = encontrarContaPeloId(transferenciaDto.getContaId());
         Transferencia transferencia = new Transferencia(
                 transferenciaDto.getDataTransferencia(),
                 transferenciaDto.getValor(),
@@ -107,5 +108,13 @@ public class TransferenciaService implements TransferenciaInterface {
                         nomeOperadorTransacao
                 ))
                 .collect(Collectors.toList());
+    }
+
+    private @NotNull Conta encontrarContaPeloId(int id) {
+        Optional<Conta> contaValida = contaRepository.findById(id);
+        if (contaValida.isEmpty()) {
+            throw new ContaNaoEncontradaException();
+        }
+        return contaValida.get();
     }
 }

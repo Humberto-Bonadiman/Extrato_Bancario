@@ -38,7 +38,7 @@ public class EncontrarContaPeloIdTest {
     @Test
     @Order(2)
     @DisplayName("2 - Deve encontrar uma conta com sucesso")
-    void registerPersonSuccessfully() throws Exception {
+    void encontrarConta() throws Exception {
         final Conta conta = CriaConta.criarConta();
         contaRepository.save(conta);
         mockMvc.perform(get("/conta/" + conta.getIdConta())

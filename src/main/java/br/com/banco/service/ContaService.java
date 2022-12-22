@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class ContaService implements ContaInterface {
 
     @Autowired
-    static
     ContaRepository contaRepository;
 
     @Override
@@ -41,7 +40,7 @@ public class ContaService implements ContaInterface {
         contaRepository.deleteById(id);
     }
 
-    public static @NotNull Conta encontrarContaPeloId(int id) {
+    private @NotNull Conta encontrarContaPeloId(int id) {
         Optional<Conta> contaValida = contaRepository.findById(id);
         if (contaValida.isEmpty()) {
             throw new ContaNaoEncontradaException();
