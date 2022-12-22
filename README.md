@@ -1,49 +1,111 @@
-# Processo Seletivo Java
+# Boas vindas ao repositório do projeto Extrato Bancário
 
-## Descrição 
+[![Continuos Integration with GitHub](https://github.com/Humberto-Bonadiman/Extrato_Bancario/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Humberto-Bonadiman/Extrato_Bancario/actions/workflows/docker-publish.yml)
 
-- Este teste consiste em construir uma camada de serviço, para uma operação muito realizada em bancos, para emissão de extrato bancário.
+---
 
+## Descrição do projeto
 
-## Como executar a aplicação 
+Neste projeto eu fui responsável por construir uma camada de serviço, para uma operação muito realizada em bancos, para emissão de extrato bancário.
 
-- Você pode executar a aplicação da maneira que quiser e utilizando a IDE de sua preferência. 
-- Caso queira executar a aplicação via linha de comando, execute primeiramente o comando:
+---
 
-                   ./mvnw clean package  para linux.
+## Instalação do projeto localmente
 
-                   .\mvnw clean package  para windows.
-- Após isso execute o comando: 
+Após cada um dos passos, haverá um exemplo do comando a ser digitado para fazer o que está sendo pedido.
 
-                             java -jar <...caminhoParaSeuJar>
+1. Realize o clone do projeto no diretório de sua preferência:
+```javascript
+git clone git@github.com:humberto-bonadiman/Extrato_Bancario.git
+```
 
-## Requisitos de sistema
+2. Acesse o diretório do projeto e depois utilize o comando **mvn install** para instalar todas as dependências necessárias:
+```javascript
+  cd Extrato_Bancario
+  mvn install
+```
 
-- Possuir a JDK 11 
-- Uma IDE ou editor de sua preferência
+3. Após empacote o código compilado com o comando **mvn package**:
+```javascript
+mvn package
+```
 
-## Requisitos do Projeto
+## Comandos para utilizar o Docker
 
-- A sua api deve fornecer os dados de transferência de acordo com o número da conta bacária.
-- Caso não seja informado nenhum filtro, retornar  todos os dados de transferência.
-- Caso seja informado um período de tempo, retornar todas as transferências relacionadas à aquele período de tempo.
-- Caso seja informado o nome do operador da transação, retornar todas as transferências relacionados à aquele operador.
-- Caso todos os filtros sejam informados, retornar todas as transferências com base no período de tempo informado e o nome do operador.
-- Operador de transação nada mais é que, o nome do responsável de destino da transação caso seja uma operação de transferência de saida ou o nome do responsável de onde se originou a transação caso seja uma operação de transferência de entrada.
-- Os valores devem ser de ponto flutuante, e deve-se considerar apenas duas casas decimais.
-- O frontend deve seguir como exemplo o protótipo informado no documento do processo seletivo.
-- No frontend o usuário deve ser capaz de informar um período de tem e/ou nome do operador da transasção como filtros para buscar as transações.
-- As transações devem ser exibidas junto com o saldo total e o saldo total no período de acordo com o protótipo do documento.
+Para criar e iniciar os contêineres:
+</br>
+Obs.: Com o comando abaixo o docker fica rodando no terminal.
+```javascript
+docker-compose up
+```
 
-## O que iremos avaliar
-- Cumprimento dos requisitos
-- Qualidade do projeto de API e fluidez da DX
-- Organização do código e boas práticas
-- Domínio das linguagens, bibliotecas e ferramentas utilizadas
-- Organização dos commits
-- Escrita e cobertura de testes
+Para criar e iniciar os contêineres em stand-by:
+```javascript
+docker-compose up -d
+```
 
-## Sobre a entrega
-- Utilizar o padrão RESTFul para a construção da sua API.
-- Existe um script sql no pacote resources que cotém a modelagem do banco que pode ser seguida, e valores iniciais.
-- Caso julge necessário você poderá criar mais tablas, porém a estrutura inicial não deve ser alterada.# Extrato_Bancario
+Para realizar apenas a etapa de build das imagens que serão utilizadas:
+```javascript
+docker-compose build
+```
+
+Para paralisar e remover todos os contêineres e seus componentes como rede, imagem e volume:
+```javascript
+docker-compose down
+```
+---
+
+## Utilizando o Spring-boot sem o Docker
+
+No arquivo que está no caminho **/src/main/resources/application.yml** você deve alterar a 9ª(username) e a 10ª(password) linha com o usuário e senha do seu MySQL:
+```javascript
+spring:
+  datasource:
+    username: username
+    password: password
+```
+
+Rodar o Spring-Boot com o comando:
+```javascript
+mvn spring-boot:run
+```
+
+---
+
+## Realização dos testes
+
+Para realizar todos os testes da aplicação você pode utilizar o seguinte comando:
+```javascript
+mvn clean test
+```
+
+Para realizar somente um teste específico você deve utilizar o comando:
+```javascript
+mvn test -Dtest=O_nome_do_teste_vai_aqui
+```
+
+Exemplo:
+```javascript
+mvn test -Dtest=CriarContaTest
+```
+
+Para realizar mais de um teste basta adicionar uma vírgula ao final do teste conforme o exemplo:
+```javascript
+mvn test -Dtest=CriarContaTest,DeletarContaTest
+```
+
+Para realizar os testes do pacote **conta** você deve utilizar o seguinte comando:
+```javascript
+mvn test -Dtest="java.br.com.banco.conta**"
+```
+
+Para realizar os testes do pacote **transferencia** você deve utilizar o seguinte comando:
+```javascript
+mvn test -Dtest="java.br.com.banco.transferencia**"
+```
+
+## Documentação
+
+![Documentação Swagger](swagger_extrato_bancario.png)
+
+Para acessar a documentação pelo swagger rode o comando **mvn spring-boot:run** ou **docker-compose up** e acesse o projeto via browser, no caminho http://localhost:8081/swagger-ui/index.html ou pelo caminho http://localhost:8081/v3/api-docs.
