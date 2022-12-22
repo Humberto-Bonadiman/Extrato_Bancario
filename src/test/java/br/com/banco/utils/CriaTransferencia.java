@@ -1,5 +1,6 @@
 package br.com.banco.utils;
 
+import br.com.banco.dto.PeriodoDto;
 import br.com.banco.model.Conta;
 import br.com.banco.model.Transferencia;
 import org.jetbrains.annotations.NotNull;
@@ -33,5 +34,17 @@ public class CriaTransferencia {
                 transferencia.getContaId()
         );
         return  retorno;
+    }
+
+    public static RetornoPeriodo periodoTest(PeriodoDto periodoDto) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dataInicial = periodoDto.getDataInicial().format(formatter);
+        String dataFinal = periodoDto.getDataFinal().format(formatter);
+        RetornoPeriodo retorno = new RetornoPeriodo(
+                periodoDto.getIdConta(),
+                dataInicial,
+                dataFinal
+        );
+        return retorno;
     }
 }

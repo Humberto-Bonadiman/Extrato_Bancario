@@ -14,9 +14,9 @@ public interface TransferenciaInterface {
 
     List<Transferencia> encontrarTransferenciasPeloIdConta(int idConta);
 
-    List<Transferencia> encontrarPeloNomeOperador(int idConta, OperadorDto operadorDto);
+    List<Transferencia> encontrarPeloNomeOperador(OperadorDto operadorDto);
 
-    List<Transferencia> filtrarPeloPeriodoTempo(int idConta, PeriodoDto periodoDto);
+    List<Transferencia> filtrarPeloPeriodoTempo(PeriodoDto periodoDto);
 
     List<Transferencia> filtrarPeloTempoEOperador(
             int idConta,

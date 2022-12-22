@@ -42,20 +42,18 @@ public class TransferenciaController implements TransferenciaInterfaceController
 
     @Override
     public ResponseEntity<List<Transferencia>> encontrarPeloNomeOperador(
-            int idConta,
             OperadorDto operadorDto
     ) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(transferenciaService.encontrarPeloNomeOperador(idConta, operadorDto));
+                .body(transferenciaService.encontrarPeloNomeOperador(operadorDto));
     }
 
     @Override
     public ResponseEntity<List<Transferencia>> filtrarPeloPeriodoTempo(
-            int idConta,
             PeriodoDto periodoDto
     ) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(transferenciaService.filtrarPeloPeriodoTempo(idConta, periodoDto));
+                .body(transferenciaService.filtrarPeloPeriodoTempo(periodoDto));
     }
 
     @Override

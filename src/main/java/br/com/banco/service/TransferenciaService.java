@@ -55,18 +55,17 @@ public class TransferenciaService implements TransferenciaInterface {
     }
 
     @Override
-    public List<Transferencia> encontrarPeloNomeOperador(int idConta, OperadorDto operadorDto) {
-        List<Transferencia> encontradosPelaContaId = encontrarTodosPelaContaId(idConta);
+    public List<Transferencia> encontrarPeloNomeOperador(OperadorDto operadorDto) {
+        List<Transferencia> encontradosPelaContaId = encontrarTodosPelaContaId(operadorDto.getIdConta());
         return filtrarNomeOperador(encontradosPelaContaId, operadorDto.getNomeOperadorTransacao());
     }
 
     @Override
     public List<Transferencia> filtrarPeloPeriodoTempo(
-            int idConta,
             PeriodoDto periodoDto
     ) {
         return transferenciaRepository.filterAllByPeriodOfTime(
-                idConta,
+                periodoDto.getIdConta(),
                 periodoDto.getDataInicial(),
                 periodoDto.getDataFinal()
         );

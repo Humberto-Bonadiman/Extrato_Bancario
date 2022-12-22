@@ -58,7 +58,7 @@ public interface TransferenciaInterfaceController {
     @Operation(summary = "Mostrar todas as transferências pelo id da conta")
     ResponseEntity<List<Transferencia>> mostrarTransferenciasPeloIdConta(@PathVariable("contaId") int contaId);
 
-    @PostMapping("/id-conta/{idConta}/operador")
+    @PostMapping("/operador")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Encontrar Transferências pelo id da conta e nome do operador",
@@ -67,11 +67,10 @@ public interface TransferenciaInterfaceController {
     })
     @Operation(summary = "Mostrar todas as transferências pelo id da conta e nome do operador")
     ResponseEntity<List<Transferencia>> encontrarPeloNomeOperador(
-            @PathVariable("idConta") int idConta,
             @RequestBody OperadorDto operadorDto
     );
 
-    @PostMapping("/id-conta/{idConta}/periodo")
+    @PostMapping("/periodo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Encontrar Transferências pelo id da conta e período de tempo",
@@ -80,7 +79,6 @@ public interface TransferenciaInterfaceController {
     })
     @Operation(summary = "Mostrar todas as transferências pelo id da conta e período de tempo")
     ResponseEntity<List<Transferencia>> filtrarPeloPeriodoTempo(
-            @PathVariable int idConta,
             @RequestBody PeriodoDto periodoDto
     );
 
