@@ -96,12 +96,12 @@ mvn test -Dtest=CriarContaTest,DeletarContaTest
 
 Para realizar os testes do pacote **conta** você deve utilizar o seguinte comando:
 ```javascript
-mvn test -Dtest="java.br.com.banco.conta**"
+mvn test -Dtest="br.com.banco.conta.**"
 ```
 
 Para realizar os testes do pacote **transferencia** você deve utilizar o seguinte comando:
 ```javascript
-mvn test -Dtest="java.br.com.banco.transferencia**"
+mvn test -Dtest="br.com.banco.transferencia.**"
 ```
 
 ## Documentação
