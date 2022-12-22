@@ -1,9 +1,6 @@
 package br.com.banco.service;
 
-import br.com.banco.dto.FiltroDto;
-import br.com.banco.dto.OperadorDto;
-import br.com.banco.dto.PeriodoDto;
-import br.com.banco.dto.TransferenciaDto;
+import br.com.banco.dto.*;
 import br.com.banco.model.Transferencia;
 import java.util.List;
 
@@ -19,8 +16,7 @@ public interface TransferenciaInterface {
     List<Transferencia> filtrarPeloPeriodoTempo(PeriodoDto periodoDto);
 
     List<Transferencia> filtrarPeloTempoEOperador(
-            int idConta,
-            FiltroDto filtroDto
+            FiltroCompletoDto filtroDto
     );
 
     void deletarTransferencia(int id);

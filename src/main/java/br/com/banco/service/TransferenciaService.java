@@ -1,9 +1,7 @@
 package br.com.banco.service;
 
-import br.com.banco.dto.FiltroDto;
-import br.com.banco.dto.OperadorDto;
-import br.com.banco.dto.PeriodoDto;
-import br.com.banco.dto.TransferenciaDto;
+import br.com.banco.dto.*;
+import br.com.banco.exception.messages.TransferenciaNaoEncontradaException;
 import br.com.banco.model.Conta;
 import br.com.banco.model.Transferencia;
 import br.com.banco.repository.ContaRepository;
@@ -13,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class TransferenciaService implements TransferenciaInterface {
 
     @Override
     public Transferencia criar(@NotNull TransferenciaDto transferenciaDto) {
-        Conta conta = contaRepository.findById(transferenciaDto.getContaId()).get();
+        Conta conta = ContaService.encontrarContaPeloId(transferenciaDto.getContaId());
         Transferencia transferencia = new Transferencia(
                 transferenciaDto.getDataTransferencia(),
                 transferenciaDto.getValor(),
@@ -46,6 +45,9 @@ public class TransferenciaService implements TransferenciaInterface {
     @Override
     public Transferencia encontrarTransferenciasPeloId(int id) {
         Optional<Transferencia> transferencia = transferenciaRepository.findById(id);
+        if (transferencia.isEmpty()) {
+            throw new TransferenciaNaoEncontradaException();
+        }
         return transferencia.get();
     }
 
@@ -73,11 +75,10 @@ public class TransferenciaService implements TransferenciaInterface {
 
     @Override
     public List<Transferencia> filtrarPeloTempoEOperador(
-            int idConta,
-            FiltroDto filtroDto
+            FiltroCompletoDto filtroDto
     ) {
         List<Transferencia> transferencias = transferenciaRepository.filterAllByPeriodOfTime(
-                idConta,
+                filtroDto.getIdConta(),
                 filtroDto.getDataInicial(),
                 filtroDto.getDataFinal()
         );

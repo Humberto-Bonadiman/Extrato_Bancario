@@ -1,9 +1,6 @@
 package br.com.banco.controller;
 
-import br.com.banco.dto.FiltroDto;
-import br.com.banco.dto.OperadorDto;
-import br.com.banco.dto.PeriodoDto;
-import br.com.banco.dto.TransferenciaDto;
+import br.com.banco.dto.*;
 import br.com.banco.model.Transferencia;
 import br.com.banco.service.TransferenciaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -58,11 +55,10 @@ public class TransferenciaController implements TransferenciaInterfaceController
 
     @Override
     public ResponseEntity<List<Transferencia>> filtrarPeloTempoEOperador(
-            int idConta,
-            FiltroDto filtroDto
+            FiltroCompletoDto filtroDto
     ) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(transferenciaService.filtrarPeloTempoEOperador(idConta, filtroDto));
+                .body(transferenciaService.filtrarPeloTempoEOperador(filtroDto));
     }
 
     @Override

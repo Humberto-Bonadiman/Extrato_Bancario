@@ -1,5 +1,6 @@
 package br.com.banco.utils;
 
+import br.com.banco.dto.FiltroCompletoDto;
 import br.com.banco.dto.PeriodoDto;
 import br.com.banco.model.Conta;
 import br.com.banco.model.Transferencia;
@@ -44,6 +45,19 @@ public class CriaTransferencia {
                 periodoDto.getIdConta(),
                 dataInicial,
                 dataFinal
+        );
+        return retorno;
+    }
+
+    public static RetornoFiltroCompleto filtroTest(FiltroCompletoDto filtro) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dataInicial = filtro.getDataInicial().format(formatter);
+        String dataFinal = filtro.getDataFinal().format(formatter);
+        RetornoFiltroCompleto retorno = new RetornoFiltroCompleto(
+                filtro.getIdConta(),
+                dataInicial,
+                dataFinal,
+                filtro.getNomeOperadorTransacao()
         );
         return retorno;
     }

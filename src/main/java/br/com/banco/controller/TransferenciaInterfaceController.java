@@ -1,9 +1,6 @@
 package br.com.banco.controller;
 
-import br.com.banco.dto.FiltroDto;
-import br.com.banco.dto.OperadorDto;
-import br.com.banco.dto.PeriodoDto;
-import br.com.banco.dto.TransferenciaDto;
+import br.com.banco.dto.*;
 import br.com.banco.model.Transferencia;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -23,11 +20,7 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RequestMapping(
-        value = "/transferencia",
-        produces = APPLICATION_JSON_VALUE,
-        consumes = APPLICATION_JSON_VALUE
-)
+@RequestMapping(value = "/transferencia")
 public interface TransferenciaInterfaceController {
 
     @PostMapping
@@ -82,7 +75,7 @@ public interface TransferenciaInterfaceController {
             @RequestBody PeriodoDto periodoDto
     );
 
-    @PostMapping("/id-conta/{idConta}/operador/periodo")
+    @PostMapping("/operador/periodo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "Encontrar Transferências pelo id da conta e período de tempo",
@@ -91,8 +84,7 @@ public interface TransferenciaInterfaceController {
     })
     @Operation(summary = "Mostrar todas as transferências pelo id da conta e período de tempo")
     ResponseEntity<List<Transferencia>> filtrarPeloTempoEOperador(
-            @PathVariable int idConta,
-            @RequestBody FiltroDto filtroDto
+            @RequestBody FiltroCompletoDto filtroDto
     );
 
     @DeleteMapping("/{id}")

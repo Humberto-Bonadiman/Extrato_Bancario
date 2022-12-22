@@ -1,6 +1,7 @@
 package br.com.banco.service;
 
 import br.com.banco.dto.ContaDto;
+import br.com.banco.exception.messages.ContaNaoEncontradaException;
 import br.com.banco.model.Conta;
 import br.com.banco.repository.ContaRepository;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class ContaService implements ContaInterface {
 
     @Autowired
+    static
     ContaRepository contaRepository;
 
     @Override
@@ -39,13 +41,11 @@ public class ContaService implements ContaInterface {
         contaRepository.deleteById(id);
     }
 
-    private @NotNull Conta encontrarContaPeloId(int id) {
+    public static @NotNull Conta encontrarContaPeloId(int id) {
         Optional<Conta> contaValida = contaRepository.findById(id);
-        /**
-         * if (contaValida.isEmpty()) {
-         *             throw new ExcecaoContaNaoRegistrada();
-         *         }
-         */
+        if (contaValida.isEmpty()) {
+            throw new ContaNaoEncontradaException();
+        }
         return contaValida.get();
     }
 }
