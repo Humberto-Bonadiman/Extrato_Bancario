@@ -28,6 +28,11 @@ public class ContaService implements ContaInterface {
     }
 
     @Override
+    public Conta encontrarPeloNome(String nomeResponsavel) {
+        return encontrarContaPeloNomeResponsavel(nomeResponsavel);
+    }
+
+    @Override
     public Conta atualizar(int id, @NotNull ContaDto contaDto) {
         Conta conta = encontrarContaPeloId(id);
         conta.setNomeResponsavel(contaDto.getNomeResponsavel());
@@ -42,6 +47,14 @@ public class ContaService implements ContaInterface {
 
     private @NotNull Conta encontrarContaPeloId(int id) {
         Optional<Conta> contaValida = contaRepository.findById(id);
+        if (contaValida.isEmpty()) {
+            throw new ContaNaoEncontradaException();
+        }
+        return contaValida.get();
+    }
+
+    private @NotNull Conta encontrarContaPeloNomeResponsavel(String nomeResponsavel) {
+        Optional<Conta> contaValida = contaRepository.findByNomeResponsavel(nomeResponsavel);
         if (contaValida.isEmpty()) {
             throw new ContaNaoEncontradaException();
         }

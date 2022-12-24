@@ -8,6 +8,8 @@ public interface ContaInterface {
 
     Conta encontrarPeloId(int id);
 
+    Conta encontrarPeloNome(String nomeResponsavel);
+
     Conta atualizar(int id, ContaDto contaDto);
 
     void deletar(int id);

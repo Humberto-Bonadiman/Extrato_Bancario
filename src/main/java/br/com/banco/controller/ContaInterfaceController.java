@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 @RequestMapping("/conta")
 public interface ContaInterfaceController {
 
@@ -32,6 +34,16 @@ public interface ContaInterfaceController {
                     content = @Content)})
     @Operation(summary = "Encontrar conta pelo id")
     ResponseEntity<Conta> encontrarPeloId(@PathVariable int id);
+
+    @GetMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Encontrar conta pelo nome responsável",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Conta.class)) }),
+            @ApiResponse(responseCode = "404", description = "Conta não encontrada",
+                    content = @Content)})
+    @Operation(summary = "Encontrar conta pelo nome responsável")
+    ResponseEntity<Conta> encontrarPeloNome(@PathParam("nome-responsavel") String nomeResponsavel);
 
     @PatchMapping("/{id}")
     @ApiResponses(value = {

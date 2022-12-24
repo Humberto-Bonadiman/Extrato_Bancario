@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+
 @CrossOrigin
 @RestController
 @Tag(name = "Conta")
@@ -26,6 +28,12 @@ public class ContaController implements ContaInterfaceController {
     @Override
     public ResponseEntity<Conta> encontrarPeloId(int id) {
         return ResponseEntity.status(HttpStatus.OK).body(contaService.encontrarPeloId(id));
+    }
+
+    @Override
+    public ResponseEntity<Conta> encontrarPeloNome(String nomeResponsavel) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(contaService.encontrarPeloNome(nomeResponsavel));
     }
 
     @Override
